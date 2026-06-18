@@ -8,6 +8,9 @@ RUN mvn -q -DskipTests package
 # Runtime stage: Tomcat 8.5 on JRE 8, matching the servlet 3.1 / JSP 2.3 levels
 # the app is compiled against.
 FROM tomcat:8.5.99-jre8-temurin
+LABEL org.opencontainers.image.source="https://github.com/aaronm-sysdig/customer-portal"
+LABEL org.opencontainers.image.title="customer-portal"
+LABEL org.opencontainers.image.description="Internal customer administration portal for Acme Financial Services"
 # psql is baked in so the on-call runbook's connectivity checks work inside the
 # pod without installing anything at runtime.
 RUN apt-get update \
