@@ -1,0 +1,64 @@
+name: Sysdig Secure - Image Scan
+
+# Builds the portal image and scans it with Sysdig Secure (the marketplace
+# scan-action, which wraps sysdig-cli-scanner).
+#
+# The scan runs the standard Sysdig policy and fails the job on a failed policy
+# evaluation (stop-on-failed-policy-eval: true), so a policy regression blocks
+# the build rather than being reported and ignored. The SARIF report is uploaded
+# to the GitHub Security tab either way.
+#
+# Requires repo secret SECURE_API_TOKEN (Sysdig Secure API token).
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - "Dockerfile"
+      - ".github/workflows/sysdig-scan.yml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - "Dockerfile"
+      - ".github/workflows/sysdig-scan.yml"
+  workflow_dispatch:
+
+env:
+  SYSDIG_SECURE_URL: https://app.au1.sysdig.com
+  IMAGE_TAG: customer-portal/portal:${{ github.run_number }}
+
+permissions:
+  contents: read
+  security-events: write   # required for the SARIF upload
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build the portal image
+        run: docker build . --file ./Dockerfile --tag "${{ env.IMAGE_TAG }}"
+
+      - name: Sysdig Secure image scan
+        id: scan
+        uses: sysdiglabs/scan-action@v6
+        with:
+          image-tag: ${{ env.IMAGE_TAG }}
+          sysdig-secure-url: ${{ env.SYSDIG_SECURE_URL }}
+          sysdig-secure-token: ${{ secrets.SECURE_API_TOKEN }}
+          stop-on-failed-policy-eval: true
+          stop-on-processing-error: true
+
+      - name: Upload SARIF report to the Security tab
+        # Runs even when the scan step fails the policy gate above.
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarifReport }}
+          category: sysdig-vm
