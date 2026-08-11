@@ -19,6 +19,15 @@
     .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 20px; font-size: 14px; color: #475569; border-left: 3px solid transparent; cursor: default; }
     .nav-item.active { background: #eff6ff; color: #2563eb; border-left-color: #2563eb; font-weight: 600; }
     .nav-item:not(.active):hover { background: #f8fafc; }
+    a.nav-item { text-decoration: none; color: #475569; cursor: pointer; }
+    a.nav-item.active { color: #2563eb; }
+    table.records { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.records th { text-align: left; padding: 10px 20px; background: #f8fafc; color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #e2e8f0; }
+    table.records td { padding: 12px 20px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+    table.records tr:last-child td { border-bottom: none; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .masked { color: #64748b; letter-spacing: .08em; }
+    .note { padding: 12px 20px; font-size: 12px; color: #64748b; background: #f8fafc; border-top: 1px solid #f1f5f9; }
     .nav-icon { width: 16px; text-align: center; font-size: 13px; opacity: 0.7; }
 
     .main { margin-left: 220px; padding: 36px 40px; }
@@ -69,8 +78,8 @@
 
 <div class="sidebar">
   <div class="nav-section">Main</div>
-  <div class="nav-item active"><span class="nav-icon">&#9632;</span> Dashboard</div>
-  <div class="nav-item"><span class="nav-icon">&#9632;</span> Customers</div>
+  <a class="nav-item<s:if test="!customerView"> active</s:if>" href="customers.action"><span class="nav-icon">&#9632;</span> Dashboard</a>
+  <a class="nav-item<s:if test="customerView"> active</s:if>" href="customers.action?view=customers"><span class="nav-icon">&#9632;</span> Customers</a>
   <div class="nav-item"><span class="nav-icon">&#9632;</span> Accounts</div>
   <div class="nav-item"><span class="nav-icon">&#9632;</span> Transactions</div>
   <div class="nav-item"><span class="nav-icon">&#9632;</span> Cards</div>
@@ -87,6 +96,39 @@
 </div>
 
 <div class="main">
+<s:if test="customerView">
+  <div class="page-header">
+    <h1>Customers</h1>
+    <p><s:property value="rows.size"/> records &mdash; retrieved <%= new java.util.Date() %></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Customer Records</h2>
+      <span class="badge badge-green">PCI scope</span>
+    </div>
+    <table class="records">
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Payment card</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+      <s:iterator value="rows" var="r">
+        <tr>
+          <td class="mono"><s:property value="#r.id"/></td>
+          <td><s:property value="#r.name"/></td>
+          <td><s:property value="#r.email"/></td>
+          <td class="mono masked">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; <s:property value="#r.cardLast4"/></td>
+          <td><span class="badge badge-green">Verified</span></td>
+        </tr>
+      </s:iterator>
+      </tbody>
+    </table>
+    <div class="note">
+      Card numbers are masked in this view. Unmasking requires elevated approval and is recorded in the audit log.
+    </div>
+  </div>
+</s:if>
+<s:else>
   <div class="page-header">
     <h1>Dashboard</h1>
     <p>Customer overview &mdash; Last updated: <%= new java.util.Date() %></p>
@@ -169,6 +211,7 @@
       <div class="alert-item"><div class="alert-dot"></div> Audit logging: Enabled</div>
     </div>
   </div>
+</s:else>
 </div>
 
 </body>
