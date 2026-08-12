@@ -9,59 +9,59 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; }
 
     .topbar { background: #1a1a2e; color: #fff; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 700; }
+    .logo { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 700; }
     .logo-icon { width: 30px; height: 30px; background: #e63946; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; color: #fff; }
-    .topbar-right { font-size: 13px; color: #aab4c8; }
+    .topbar-right { font-size: 14px; color: #aab4c8; }
     .topbar-right strong { color: #fff; }
 
     .sidebar { position: fixed; top: 56px; left: 0; width: 220px; height: calc(100vh - 56px); background: #fff; border-right: 1px solid #e2e8f0; padding: 20px 0; overflow-y: auto; }
-    .nav-section { padding: 4px 20px 6px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #94a3b8; margin-top: 12px; }
-    .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 20px; font-size: 14px; color: #475569; border-left: 3px solid transparent; cursor: default; }
+    .nav-section { padding: 4px 20px 6px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #94a3b8; margin-top: 12px; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; font-size: 15px; color: #475569; border-left: 3px solid transparent; cursor: default; }
     .nav-item.active { background: #eff6ff; color: #2563eb; border-left-color: #2563eb; font-weight: 600; }
     .nav-item:not(.active):hover { background: #f8fafc; }
     a.nav-item { text-decoration: none; color: #475569; cursor: pointer; }
     a.nav-item.active { color: #2563eb; }
-    table.records { width: 100%; border-collapse: collapse; font-size: 13px; }
-    table.records th { text-align: left; padding: 10px 20px; background: #f8fafc; color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #e2e8f0; }
-    table.records td { padding: 12px 20px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+    table.records { width: 100%; border-collapse: collapse; font-size: 16px; }
+    table.records th { text-align: left; padding: 12px 20px; background: #f8fafc; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #e2e8f0; }
+    table.records td { padding: 14px 20px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
     table.records tr:last-child td { border-bottom: none; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
     .masked { color: #64748b; letter-spacing: .08em; }
-    .note { padding: 12px 20px; font-size: 12px; color: #64748b; background: #f8fafc; border-top: 1px solid #f1f5f9; }
+    .note { padding: 14px 20px; font-size: 14px; color: #64748b; background: #f8fafc; border-top: 1px solid #f1f5f9; }
     .nav-icon { width: 16px; text-align: center; font-size: 13px; opacity: 0.7; }
 
     .main { margin-left: 220px; padding: 36px 40px; }
     .page-header { margin-bottom: 28px; }
-    .page-header h1 { font-size: 22px; font-weight: 700; }
-    .page-header p { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .page-header h1 { font-size: 28px; font-weight: 700; }
+    .page-header p { font-size: 15px; color: #64748b; margin-top: 4px; }
 
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
     .stat { background: #fff; border-radius: 10px; padding: 18px 20px; border: 1px solid #e2e8f0; }
-    .stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
-    .stat-value { font-size: 26px; font-weight: 700; color: #1a1a2e; margin-top: 4px; }
-    .stat-delta { font-size: 12px; color: #22c55e; margin-top: 2px; }
+    .stat-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-value { font-size: 32px; font-weight: 700; color: #1a1a2e; margin-top: 4px; }
+    .stat-delta { font-size: 13px; color: #22c55e; margin-top: 2px; }
     .stat-delta.down { color: #ef4444; }
 
     .row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
     .card { background: #fff; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; }
     .card-header { padding: 16px 20px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; }
-    .card-header h2 { font-size: 14px; font-weight: 600; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+    .card-header h2 { font-size: 17px; font-weight: 600; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 13px; font-weight: 600; }
     .badge-green { background: #dcfce7; color: #16a34a; }
     .badge-blue { background: #dbeafe; color: #2563eb; }
     .badge-red { background: #fee2e2; color: #dc2626; }
 
-    .activity-item { padding: 12px 20px; border-bottom: 1px solid #f8fafc; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+    .activity-item { padding: 14px 20px; border-bottom: 1px solid #f8fafc; display: flex; align-items: center; justify-content: space-between; font-size: 15px; }
     .activity-item:last-child { border-bottom: none; }
     .activity-name { font-weight: 600; color: #1a1a2e; }
-    .activity-detail { color: #64748b; font-size: 12px; margin-top: 1px; }
-    .activity-time { font-size: 11px; color: #94a3b8; }
+    .activity-detail { color: #64748b; font-size: 14px; margin-top: 1px; }
+    .activity-time { font-size: 13px; color: #94a3b8; }
 
-    .alert-item { padding: 10px 20px; border-bottom: 1px solid #f8fafc; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #374151; }
+    .alert-item { padding: 12px 20px; border-bottom: 1px solid #f8fafc; display: flex; align-items: center; gap: 10px; font-size: 15px; color: #374151; }
     .alert-item:last-child { border-bottom: none; }
     .alert-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
-    .redacted { color: #94a3b8; font-style: italic; font-size: 12px; }
+    .redacted { color: #94a3b8; font-style: italic; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -152,7 +152,7 @@
     </div>
     <div class="stat">
       <div class="stat-label">System Status</div>
-      <div class="stat-value" style="font-size:18px;padding-top:6px;"><span class="badge badge-green">Operational</span></div>
+      <div class="stat-value" style="font-size:22px;padding-top:6px;"><span class="badge badge-green">Operational</span></div>
     </div>
   </div>
 
